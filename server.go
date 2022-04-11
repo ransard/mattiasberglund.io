@@ -3,6 +3,7 @@ package main
 import (
 	"io/ioutil"
 	"math/rand"
+	"sort"
 	"strings"
 	"time"
 
@@ -23,8 +24,11 @@ func main() {
 		fileInfo, _ := ioutil.ReadDir("./build/images/gallery")
 		var files []string
 
-		for _, f := range fileInfo {
+		sort.Slice(fileInfo, func(i, j int) bool {
+			return fileInfo[i].ModTime().After(fileInfo[j].ModTime())
+		})
 
+		for _, f := range fileInfo {
 			if strings.Contains(f.Name(), "png") {
 				files = append(files, f.Name())
 			}
