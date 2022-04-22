@@ -72,17 +72,16 @@
 </script>
 
 <body class="bg-gray-700">
-	<div class="grid grid-cols-3 auto-cols-auto aspect-square">
+	<div class="flex flex-wrap">
 		{#each images_thumb as image}
-			<button on:click={() => handleClick(image.image)}>
+			<div on:click={() => handleClick(image.image)} style="flex: 1 1 300px;">
 				<img
 					data-src="/images/gallery/thumb/{image.thumb}"
-					style="height: 512px; width: 512px;"
 					loading="lazy"
 					class="lazy-image"
 					alt="image"
 				/>
-			</button>
+			</div>
 		{/each}
 	</div>
 	<Modal {showImage} on:cancelModal={cancelModal} />
@@ -99,6 +98,8 @@
 	}
 
 	img {
+		width: 100%;
+		height: auto;
 		opacity: 0.1;
 		transition: opacity 1200ms ease-out;
 	}
