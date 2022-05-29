@@ -12,10 +12,10 @@
 			<h1>My Home</h1>
 		</div>
 		<Card href="/ai-art">AI Art</Card>
+		<Card href="/3d">3D</Card>
 		<Card href="https://name.mattiasberglund.io">Name Maker</Card>
 		<Card href="https://mat.mattiasberglund.io">Veckans Matlista</Card>
 		<Card href="https://blog.mattiasberglund.io">Blog</Card>
-		<Card href="/todo">3D</Card>
 		<Card href="/todo">Cellular/ABM/RL/Robotics</Card>
 		<Card href="/todo">Experiments</Card>
 		<Card href="/todo">About</Card>
