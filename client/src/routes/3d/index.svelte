@@ -10,13 +10,22 @@
 </script>
 
 <html lang="en">
+	<header>
+		<script src="https://cdn.babylonjs.com/cannon.js"></script>
+	</header>
 	<body>
 		<canvas id="canvas" bind:this={el} />
 	</body>
 </html>
 
 <style>
-	html, body { width:100%; height:100%; } /* just to be sure these are full screen*/
+	html,
+	body {
+		width: 100%;
+		height: 100%;
+	} /* just to be sure these are full screen*/
 
-	canvas { display:block; } /* To remove the scrollbars */
+	canvas {
+		display: block;
+	} /* To remove the scrollbars */
 </style>
