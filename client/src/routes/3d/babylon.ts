@@ -1,4 +1,5 @@
 import * as BABYLON from 'babylonjs';
+import 'babylonjs-loaders';
 
 export const init = (canvas) => {
 	const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
@@ -60,39 +61,41 @@ const createScene = (canvas, engine) => {
 		scene
 	);
 
-	// Our built-in 'sphere' shape.
-	var sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: 2, segments: 32 }, scene);
-	sphere.physicsImpostor = new BABYLON.PhysicsImpostor(
-		sphere,
-		BABYLON.PhysicsImpostor.SphereImpostor,
-		{ mass: 1, restitution: 0.9 },
-		scene
-	);
+	// // Our built-in 'sphere' shape.
+	// var sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: 2, segments: 32 }, scene);
+	// sphere.physicsImpostor = new BABYLON.PhysicsImpostor(
+	// 	sphere,
+	// 	BABYLON.PhysicsImpostor.SphereImpostor,
+	// 	{ mass: 1, restitution: 0.9 },
+	// 	scene
+	// );
 
-	// Move the sphere upward 1/2 its height
-	sphere.position.y = 2;
+	// // Move the sphere upward 1/2 its height
+	// sphere.position.y = 2;
 
-	sphere.actionManager = new BABYLON.ActionManager(scene);
+	// sphere.actionManager = new BABYLON.ActionManager(scene);
 
-	sphere.actionManager.registerAction(
-		new BABYLON.InterpolateValueAction(
-			BABYLON.ActionManager.OnPickTrigger,
-			light,
-			'diffuse',
-			BABYLON.Color3.Black(),
-			1000
-		)
-	);
+	// sphere.actionManager.registerAction(
+	// 	new BABYLON.InterpolateValueAction(
+	// 		BABYLON.ActionManager.OnPickTrigger,
+	// 		light,
+	// 		'diffuse',
+	// 		BABYLON.Color3.Black(),
+	// 		1000
+	// 	)
+	// );
 
-	sphere.actionManager.registerAction(
-		new BABYLON.InterpolateValueAction(
-			BABYLON.ActionManager.OnPickTrigger,
-			light,
-			'diffuse',
-			BABYLON.Color3.Black(),
-			1000
-		)
-	);
+	// sphere.actionManager.registerAction(
+	// 	new BABYLON.InterpolateValueAction(
+	// 		BABYLON.ActionManager.OnPickTrigger,
+	// 		light,
+	// 		'diffuse',
+	// 		BABYLON.Color3.Black(),
+	// 		1000
+	// 	)
+	// );
+
+	BABYLON.SceneLoader.ImportMeshAsync('', '/', 'low-poly.glb', scene);
 
 	return scene;
 };

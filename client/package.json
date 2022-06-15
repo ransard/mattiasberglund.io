@@ -34,6 +34,7 @@
   "type": "module",
   "dependencies": {
     "babylonjs": "^5.9.0",
+    "babylonjs-loaders": "^5.10.0",
     "cannon": "^0.6.2",
     "three": "^0.141.0"
   }
