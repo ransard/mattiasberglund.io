@@ -22,6 +22,18 @@ export const init = (canvas) => {
 	resize();
 };
 
+const createPhysics = (mesh, scene) => {
+	const parent = mesh.parent;
+	mesh.parent = null;
+	mesh.physicsImpostor = new BABYLON.PhysicsImpostor(
+		mesh,
+		BABYLON.PhysicsImpostor.BoxImpostor,
+		{ mass: 0, friction: 0.5, restitution: 0.7 },
+		scene
+	);
+	mesh.parent = parent;
+};
+
 const createScene = (canvas, engine) => {
 	// This creates a basic Babylon Scene object (non-mesh)
 	var scene = new BABYLON.Scene(engine);
@@ -52,26 +64,25 @@ const createScene = (canvas, engine) => {
 	// Default intensity is 1. Let's dim the light a small amount
 	light.intensity = 0.7;
 
-	// Our built-in 'ground' shape.
-	var ground = BABYLON.MeshBuilder.CreateGround('ground', { width: 6, height: 6 }, scene);
-	ground.physicsImpostor = new BABYLON.PhysicsImpostor(
-		ground,
-		BABYLON.PhysicsImpostor.BoxImpostor,
-		{ mass: 0, friction: 0.5, restitution: 0.7 },
-		scene
-	);
+	BABYLON.SceneLoader.ImportMesh('', '/', 'low-poly.glb', scene, (meshes) => {
+		meshes.forEach((x) => {
+			if (x.name === 'Plane') {
+				createPhysics(x, scene);
+			}
+		});
 
-	// // Our built-in 'sphere' shape.
-	// var sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: 2, segments: 32 }, scene);
-	// sphere.physicsImpostor = new BABYLON.PhysicsImpostor(
-	// 	sphere,
-	// 	BABYLON.PhysicsImpostor.SphereImpostor,
-	// 	{ mass: 1, restitution: 0.9 },
-	// 	scene
-	// );
+		// Our built-in 'sphere' shape.
+		var sphere = BABYLON.MeshBuilder.CreateSphere('sphere', { diameter: 2, segments: 32 }, scene);
+		sphere.physicsImpostor = new BABYLON.PhysicsImpostor(
+			sphere,
+			BABYLON.PhysicsImpostor.SphereImpostor,
+			{ mass: 1, restitution: 0.9 },
+			scene
+		);
 
-	// // Move the sphere upward 1/2 its height
-	// sphere.position.y = 2;
+		// Move the sphere upward 1/2 its height
+		sphere.position.y = 5;
+	});
 
 	// sphere.actionManager = new BABYLON.ActionManager(scene);
 
@@ -94,8 +105,6 @@ const createScene = (canvas, engine) => {
 	// 		1000
 	// 	)
 	// );
-
-	BABYLON.SceneLoader.ImportMeshAsync('', '/', 'low-poly.glb', scene);
 
 	return scene;
 };
