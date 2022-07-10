@@ -1,5 +1,6 @@
 import * as BABYLON from 'babylonjs';
 import 'babylonjs-loaders';
+import { Color3 } from 'babylonjs';
 
 export const init = (canvas) => {
 	const engine = new BABYLON.Engine(canvas, true, { preserveDrawingBuffer: true, stencil: true });
@@ -59,16 +60,26 @@ const createScene = (canvas, engine) => {
 	camera.position.y = -40;
 
 	// This creates a light, aiming 0,1,0 - to the sky (non-mesh)
-	var light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(0, 1, 0), scene);
+	var light = new BABYLON.HemisphericLight('light', new BABYLON.Vector3(10, 20, 0), scene);
 
 	// Default intensity is 1. Let's dim the light a small amount
 	light.intensity = 0.7;
+
+	var light_dir = new BABYLON.DirectionalLight(
+		'dir_light',
+		new BABYLON.Vector3(-10, -20, 0),
+		scene
+	);
+
+	var shadowGenerator = new BABYLON.ShadowGenerator(512, light_dir);
 
 	BABYLON.SceneLoader.ImportMesh('', '/', 'low-poly.glb', scene, (meshes) => {
 		meshes.forEach((x) => {
 			if (x.name === 'Plane') {
 				createPhysics(x, scene);
 			}
+			x.receiveShadows = true;
+			shadowGenerator.getShadowMap().renderList.push(x);
 		});
 
 		// Our built-in 'sphere' shape.
