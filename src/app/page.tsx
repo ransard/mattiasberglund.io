@@ -88,7 +88,7 @@ export default function HeroPage() {
       >
         <div className="text-center">
           <h1 className="text-5xl font-bold mb-4 opacity-0 animate-fade-in">
-            Hello, I'm Mattias Berglund
+            Hello, I&apos;m Mattias Berglund
           </h1>
           <p className="text-xl text-gray-300 mb-8 opacity-0 animate-fade-in animation-delay-300">
             Tech Lead, Software Architect, Software Engineer, Innovator, Tech
@@ -142,15 +142,15 @@ export default function HeroPage() {
             About Me
           </h2>
           <p className="text-gray-300 mb-6 opacity-0 animate-fade-in-up animation-delay-300">
-            I'm a passionate full-stack developer with a keen eye for design.
-            With over 5 years of experience in creating web applications, I
-            specialize in React, Node.js, and modern CSS frameworks like
-            Tailwind.
+            I&apos;m a passionate full-stack developer with a keen eye for
+            design. With over 5 years of experience in creating web
+            applications, I specialize in React, Node.js, and modern CSS
+            frameworks like Tailwind.
           </p>
           <p className="text-gray-300 opacity-0 animate-fade-in-up animation-delay-500">
-            When I'm not coding, you can find me exploring new technologies,
-            contributing to open-source projects, or sharing my knowledge
-            through blog posts and tutorials.
+            When I&apos;m not coding, you can find me exploring new
+            technologies, contributing to open-source projects, or sharing my
+            knowledge through blog posts and tutorials.
           </p>
         </div>
       </section>
@@ -184,7 +184,7 @@ export default function HeroPage() {
                     technologies used.
                   </p>
                   <a
-                    href="#"
+                    href="/projects"
                     className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
                   >
                     View Project
