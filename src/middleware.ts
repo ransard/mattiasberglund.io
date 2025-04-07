@@ -16,7 +16,7 @@ export async function middleware(request: NextRequest) {
     const url = request.nextUrl.clone();
     
     // Extract the path after /notes
-    let relativePath = pathname.replace(/^\/notes\/?/, '');
+    const relativePath = pathname.replace(/^\/notes\/?/, '');
     
     // Determine if the URL ends with a trailing slash
     const hasTrailingSlash = pathname.endsWith('/');
@@ -28,8 +28,6 @@ export async function middleware(request: NextRequest) {
     const fileExtensions = ['.html', '.htm', '.json', '.xml', '.txt', '.md'];
     const hasKnownExtension = fileExtensions.some(ext => relativePath.endsWith(ext));
 
-    console.log(relativePath)
-    
     if (relativePath === '' || relativePath === '/') {
       // Root of /notes -> serve /public/notes/index.html
       targetPath = '/notes/index.html';
